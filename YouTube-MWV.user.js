@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            YouTube-MWV
 // @namespace       http://kuchi.be/
-// @version         1.3
+// @version         1.4
 // @description     Control YouTube volume by scrolling mouse wheel up and down and saving the volume settings by Kuchi - Soft's
 // @author          Kuchi - Soft's
 // @defaulticon     https://github.com/KuchiSofts/YouTube-MWV/raw/master/YouTube-MWV-icon.png
