@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            YouTube-MWV
 // @namespace       http://kuchi.be/
-// @version         1.4
+// @version         1.5
 // @description     Control YouTube volume by scrolling mouse wheel up and down and saving the volume settings by Kuchi - Soft's
 // @author          Kuchi - Soft's
 // @defaulticon     https://github.com/KuchiSofts/YouTube-MWV/raw/master/YouTube-MWV-icon.png
@@ -19,7 +19,7 @@
 // @include         *://plus.googleapis.com/*/widget/render/comments?*
 // @exclude         *://apiblog.youtube.com/*
 // @exclude         *://*.youtube.com/subscribe_embed?*
-// @run-at          document-end
+// @run-at          document-start
 // @grant           none
 // @priority        9000
 // ==/UserScript==
@@ -38,6 +38,7 @@ if(localStorage.getItem('YouTubeVolume')){
     volume = localStorage.getItem('YouTubeVolume');
     SliderVal = volume * 0.4;
 }
+
 
 window.addEventListener('wheel', function(e) {
 	YouTubePlayer = document.getElementsByClassName('video-stream html5-main-video')[0];
@@ -61,21 +62,37 @@ window.addEventListener('wheel', function(e) {
 }, false);
 
 window.addEventListener("keydown",function(e){
-	//console.log(e.target);
 	if(e.target.className.includes("html5-video-player")){
 		if(e.key == 'ArrowUp'){
 			setVolUp();
 		}else if(e.key == 'ArrowDown'){
 			setVolDown();
 		}
-		setVolFinish();
-		showVolDiv();
+		
+		if(e.key == 'ArrowUp' || e.key == 'ArrowDown'){
+			setVolFinish();
+			showVolDiv();
+		}
+		
+		if(e.key.toLowerCase() == 'a'){
+			YouTubePlayer = document.getElementsByClassName('video-stream html5-main-video')[0];
+			YouTubePlayer.currentTime --;
+		}
+		
+		if(e.key.toLowerCase() == 'd'){
+			YouTubePlayer = document.getElementsByClassName('video-stream html5-main-video')[0];
+			YouTubePlayer.currentTime ++;
+		}
+		console.log(e.key);
+		
 	}
   if (e.key === ' ' || e.key === 'Spacebar') {
     blockscroll();
   }
 
 }, false);
+
+
 
 function showVolDiv() {
 		var VolDivF = document.body.querySelector("div.ytp-bezel-text-wrapper > div.ytp-bezel-text");
@@ -141,10 +158,17 @@ function ytVolumeIcon(volume) {
 function blockscroll() {
     if(document.getElementById('player') !== null){
         document.getElementById('player').onwheel = function(){ return false; }
+        document.getElementById('player').onkeydown = function(){ return false; }
+        document.getElementById('player').onkeypress = function(){ return false; }
+        document.getElementById('player').onkeyup = function(){ return false; }
+
     }
 
     if(document.getElementById('player-container-outer') !== null){
         document.getElementById('player-container-outer').onwheel = function(){ return false; }
+        document.getElementById('player-container-outer').onkeydown = function(){ return false; }
+        document.getElementById('player-container-outer').onkeypress = function(){ return false; }
+        document.getElementById('player-container-outer').onkeyup = function(){ return false; }
     }
 }
 
@@ -169,6 +193,3 @@ function blockscroll() {
 		}
 	}
                  , 500);
-
-
-
