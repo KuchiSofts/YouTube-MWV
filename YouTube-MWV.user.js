@@ -7,7 +7,7 @@
 // @defaulticon     https://github.com/KuchiSofts/YouTube-MWV/raw/master/YouTube-MWV-icon.png
 // @icon            https://github.com/KuchiSofts/YouTube-MWV/raw/master/YouTube-MWV-icon.png
 // @updateURL       https://github.com/KuchiSofts/YouTube-MWV/raw/master/YouTube-MWV.user.js
-// @downloadURL     https://github.com/KuchiSofts/YouTube-MWV/raw/master/YouTube-MWV.user.js
+// @downloadURL     https://github.com/KuchiSofts/YouTube-MWV/raw/master/YouTube-MWV.user.js?
 // @match           *://*.youtube.com/*
 // @match           *://youtube.com/*
 // @match           *://s.ytimg.com/yts/jsbin/*
