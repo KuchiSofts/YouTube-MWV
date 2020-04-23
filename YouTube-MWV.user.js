@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            YouTube-MWV
 // @namespace       http://kuchi.be/
-// @version         1.5
+// @version         1.7
 // @description     Control YouTube volume by scrolling mouse wheel up and down and saving the volume settings by Kuchi - Soft's
 // @author          Kuchi - Soft's
 // @defaulticon     https://github.com/KuchiSofts/YouTube-MWV/raw/master/YouTube-MWV-icon.png
@@ -19,7 +19,7 @@
 // @include         *://plus.googleapis.com/*/widget/render/comments?*
 // @exclude         *://apiblog.youtube.com/*
 // @exclude         *://*.youtube.com/subscribe_embed?*
-// @run-at          document-start
+// @run-at          document-end
 // @grant           none
 // @priority        9000
 // ==/UserScript==
@@ -161,6 +161,14 @@ function blockscroll() {
         document.getElementById('player').onkeydown = function(){ return false; }
         document.getElementById('player').onkeypress = function(){ return false; }
         document.getElementById('player').onkeyup = function(){ return false; }
+
+    }
+
+    if(document.getElementById('player-container') !== null){
+        document.getElementById('player-container').onwheel = function(){ return false; }
+        document.getElementById('player-container').onkeydown = function(){ return false; }
+        document.getElementById('player-container').onkeypress = function(){ return false; }
+        document.getElementById('player-container').onkeyup = function(){ return false; }
 
     }
 
