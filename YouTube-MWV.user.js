@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            YouTube-MWV
 // @namespace       http://kuchi.be/
-// @version         1.7
+// @version         1.8
 // @description     Control YouTube volume by scrolling mouse wheel up and down and saving the volume settings by Kuchi - Soft's
 // @author          Kuchi - Soft's
 // @defaulticon     https://github.com/KuchiSofts/YouTube-MWV/raw/master/YouTube-MWV-icon.png
@@ -68,23 +68,23 @@ window.addEventListener("keydown",function(e){
 		}else if(e.key == 'ArrowDown'){
 			setVolDown();
 		}
-		
+
 		if(e.key == 'ArrowUp' || e.key == 'ArrowDown'){
 			setVolFinish();
 			showVolDiv();
 		}
-		
+
 		if(e.key.toLowerCase() == 'a'){
 			YouTubePlayer = document.getElementsByClassName('video-stream html5-main-video')[0];
 			YouTubePlayer.currentTime --;
 		}
-		
+
 		if(e.key.toLowerCase() == 'd'){
 			YouTubePlayer = document.getElementsByClassName('video-stream html5-main-video')[0];
 			YouTubePlayer.currentTime ++;
 		}
 		console.log(e.key);
-		
+
 	}
   if (e.key === ' ' || e.key === 'Spacebar') {
     blockscroll();
@@ -103,7 +103,7 @@ function showVolDiv() {
         if(VolDivShow){
             clearInterval(TimeOutVol);
             TimeOutVol = setTimeout(function(){ VolDivF.parentElement.parentElement.style.display = "none"; VolDivShow = false;}, 3000);
-        }	
+        }
 }
 
 function setVolFinish() {
@@ -146,7 +146,7 @@ function setVolUp() {
 		volume = parseFloat(volume) + 0.01;
 		SliderVal = YouTubePlayer.volume * 100;
 		console.log('YouTube Volume Set To:' + volume);
-	}	
+	}
 }
 
 function ytVolumeIcon(volume) {
@@ -156,11 +156,26 @@ function ytVolumeIcon(volume) {
 }
 
 function blockscroll() {
+    if(document.getElementById('player-theater-container') !== null){
+        document.getElementById('player-theater-container').onwheel = function(){ return false; }
+        document.getElementById('player-theater-container').onkeydown = function(){ return false; }
+        document.getElementById('player-theater-container').onkeypress = function(){ return false; }
+        document.getElementById('player-theater-container').onkeyup = function(){ return false; }
+    }
+
+    if(document.getElementById('container') !== null){
+        document.getElementById('container').onwheel = function(){ return false; }
+        document.getElementById('container').onkeydown = function(){ return false; }
+        document.getElementById('container').onkeypress = function(){ return false; }
+        document.getElementById('container').onkeyup = function(){ return false; }
+    }
+
     if(document.getElementById('player') !== null){
         document.getElementById('player').onwheel = function(){ return false; }
         document.getElementById('player').onkeydown = function(){ return false; }
         document.getElementById('player').onkeypress = function(){ return false; }
         document.getElementById('player').onkeyup = function(){ return false; }
+
 
     }
 
