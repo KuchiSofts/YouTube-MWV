@@ -155,7 +155,9 @@
 
     window.addEventListener('wheel', function(e) {
         if (e.ctrlKey || e.metaKey) return; // Keep browser zoom
-        if (Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.deltaY === 0) return;
+        // Windows/Chrome turn Shift+wheel into horizontal scrolling (deltaX, deltaY = 0)
+        var delta = e.shiftKey && e.deltaY === 0 ? e.deltaX : e.deltaY;
+        if (delta === 0 || (!e.shiftKey && Math.abs(e.deltaX) > Math.abs(e.deltaY))) return;
 
         var target = e.target;
         if (!target || typeof target.closest !== 'function') return;
@@ -174,7 +176,7 @@
         lastWheelTime = now;
 
         var step = e.shiftKey ? CONFIG.fineStep : CONFIG.step;
-        changeVolume(player, e.deltaY < 0 ? step : -step);
+        changeVolume(player, delta < 0 ? step : -step);
     }, { passive: false, capture: true });
 
     // Save volume changes made with YouTube's own slider / keys
